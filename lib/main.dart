@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:expenses/models/transaction.dart';
 import 'package:intl/intl.dart';
@@ -12,6 +14,9 @@ class ExpensesApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final _transactions = [
     Transaction(
       id: 't1',
@@ -97,7 +102,41 @@ class MyHomePage extends StatelessWidget {
                 ),
               );
             }).toList(),
-          )
+          ),
+          Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    controller: titleController,
+                    decoration: InputDecoration(
+                      labelText: 'Título',
+                    ),
+                  ),
+                  TextField(
+                    controller: valueController,
+                    decoration: InputDecoration(
+                      labelText: 'Valor (R\$)',
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                          color: Colors.green,
+                          child: Text(
+                            'Nova Transação',
+                          ),
+                          // ignore: avoid_print
+                          onPressed: () => {print(titleController)}),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
